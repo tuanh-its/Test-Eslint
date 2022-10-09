@@ -2,13 +2,14 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 
 const Login = () => {
-  const { register, watch, formState = { errors } } = useForm();
+  const { register, watch, handleSubmit } = useForm();
   const allFilelsValue = watch();
   console.log(allFilelsValue);
+  const onSubmit = (data) => console.log(data);
 
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label>User Name</label>
         <input
           type='text'
@@ -31,6 +32,7 @@ const Login = () => {
         />
         <label htmlFor=''>Phone Number</label>
         <input type='text' name='phone' {...register('phone', { valueAsNumBer: true })} />
+        <input type='submit' />
       </form>
     </div>
   );

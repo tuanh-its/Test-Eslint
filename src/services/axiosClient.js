@@ -1,12 +1,11 @@
-import axios from "axios";
-import { getAccessToken, getCurrentLanguage } from "../helper/localStorage";
+import axios from 'axios';
+import { getAccessToken, getCurrentLanguage } from '../helper/localStorage';
 
 const configRequest = async (config) => {
-  const access_token =
-    getAccessToken() || localStorage.getItem("access_token") || "";
+  const access_token = getAccessToken() || localStorage.getItem('access_token') || '';
   const lang = getCurrentLanguage();
-  config.headers["X-localization"] = lang.replace("/", "") || "ja";
-  if (access_token) config.headers["Authorization"] = `Bearer ${access_token}`;
+  config.headers['X-localization'] = lang.replace('/', '') || 'ja';
+  if (access_token) config.headers['Authorization'] = `Bearer ${access_token}`;
 
   return config;
 };
@@ -22,7 +21,7 @@ const responseReject = (error) => {
 const axiosClient = axios.create({
   baseURL: process.env.MIX_REACT_APP_URL,
   headers: {
-    "content-text": "application/json",
+    'content-text': 'application/json',
   },
 });
 
@@ -33,7 +32,7 @@ axiosClient.interceptors.response.use(responseResolve, responseReject);
 export const axiosFormData = axios.create({
   baseURL: process.env.MIX_REACT_APP_URL,
   headers: {
-    "content-type": "multipart/form-data",
+    'content-type': 'multipart/form-data',
   },
 });
 
